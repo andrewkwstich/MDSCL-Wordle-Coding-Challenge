@@ -25,9 +25,9 @@ where $l_i$ refers to the letter at position i, and $n$ refers to the length of 
 Intuitively, what the above equation does is to directly maximize the number of green letters expected for each guess. However, for the early guesses, this might not be a suitable goal: one also wants to prioritize guessing a wide variety of letters. Therefore, a multiplier was added so that early guesses are penalized for overusing the same letters. This penalty gets smaller with each subsequent guess and is absent after the third guess. The final form of the equation to be maximized is then as follows:
 
 $$\sum_{i=1}^{n} \begin{Bmatrix}
-(p(l_{i})|pos=i) \times min(\frac{g}{4},1), \quad l_i \text{already attempted}
+(p(l_{i})|pos=i) \times min(\frac{g}{4},1), \quad l_i \text{ already attempted}
 \\ 
-p(l_{i})|pos=i, \qquad \qquad \qquad \quad l_i \text{not yet attempted}
+p(l_{i})|pos=i, \qquad \qquad \qquad \quad l_i \text{ not yet attempted}
 \end{Bmatrix}$$
 
 where $g$ is the number of preceding guesses, and "attempted" refers to whether the letter has been guessed at any point for this word. Adding this penalty was found to reduce the number of guesses required.
