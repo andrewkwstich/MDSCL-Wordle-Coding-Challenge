@@ -26,11 +26,11 @@ where $l_wi$ refers to the letter in word w at position i, $n$ refers to the len
 
 Intuitively, what this amounts to is to directly maximize the number of green letters expected for each guess. However, for the early guesses, this might not be a suitable goal: one also wants to prioritize guessing a wide variety of letters. Therefore, a multiplier was added so that early guesses are penalized for overusing the same letters. This penalty gets smaller with each subsequent guess and is absent after the third guess. The final form of the sum to be maximized is then as follows:
 
-guess = argmax\left (\sum_{i=1}^{n} \begin{Bmatrix}
+$$guess = argmax\left (\sum_{i=1}^{n} \begin{Bmatrix}
 (P(l_{wi})|pos=i) \times min(\frac{g}{4},1), \quad l_i \text{ already attempted}
 \\ 
 P(l_{wi})|pos=i, \qquad \qquad \qquad \quad l_i \text{ not yet attempted}
-\end{Bmatrix} \right )
+\end{Bmatrix} \right )$$
 
 where $g$ is the number of preceding guesses, and "attempted" refers to whether the letter has been guessed at any point for this word. Adding this penalty was found to reduce the number of guesses required.
 
