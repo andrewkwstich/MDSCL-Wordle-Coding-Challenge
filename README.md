@@ -34,6 +34,18 @@ P(l_{wi})|pos=i, \qquad \qquad \qquad \quad l_i \text{ not yet attempted}
 
 where $g$ is the number of preceding guesses, and "attempted" refers to whether the letter has been guessed at any point for this word. Adding this penalty was found to reduce the number of guesses required.
 
+### Demonstration
+
+Suppose the system is tasked with guessing a new word, and is evaluating the guess "cranes". If it making its first guess, then there will be no used letters, and the sum will be as in the first equation above. The system would sum over the following letter scores:
+
+![Cranes1](cranes1.png?raw=true)
+
+Now, suppose that the system ultimately selected "camels" for its first guess, and learned that the first and last letters must be "c" and "s" respectively, and that the word must contain an "a" and "e" but no "m" or "l". With the `remove_words` function constraining the list appropriately, the system again considers "cranes". The letter-position values of "cranes" will now be as follows:
+
+![Cranes2](cranes2.png?raw=true)
+
+Note that the relative values of letters have changed, and the letters that had appeared in "camels" before now have lower values. After the third guess, as the system closes in on the letters to be used, the values will revert to those of the first guess.
+
 ### Gitksan Encoding
 
 Gitksan words were encoded so that each multigraph (e.g., "k_'") was encoded as a single arbitrary character. This was accomplished using a concatenation of string manipulation rules. A rule is triggered if the current character belongs to a particular (linguistically inspired) domain (e.g. "vowels"), which helped minimize the number of rules needed.
@@ -42,7 +54,7 @@ Gitksan words were encoded so that each multigraph (e.g., "k_'") was encoded as 
 
 Instructions for the coding challenge, along with code to evaluate submissions, are found in `instructions.ipynb`. Most of the notebook was created by the coding challenge organizers; see `instructions.ipynb` for details.
 
-To see the results, simply run `instructions.ipynb`. If you do not have access to the Gitksan data, comment out the code under "Task 2".
+To see the results, simply run `instructions.ipynb`. If you do not have access to the Gitksan data, comment out the code under "Task 2" in both `instructions.ipynb` and `solution.py`.
 
 The English and Gitksan solutions are both found in `solution.ipynb`, along with a few tests to ensure that the functions work as intended.
 
